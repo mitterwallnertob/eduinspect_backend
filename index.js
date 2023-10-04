@@ -3,6 +3,8 @@ import express from 'express';
 import moment from "moment";
 import cors from "cors";
 
+//http://localhost:8082/timetable?class=5AHIT
+
 const app = express();
 const untis = new WebUntis('htbla_wels', 'terminal3', 'terminal3', 'hypate.webuntis.com');
 
