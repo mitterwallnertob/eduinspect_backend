@@ -6,14 +6,9 @@ import cors from "cors";
 //http://localhost:8082/timetable
 
 const app = express();
-const untis = new WebUntis('htbla_wels', 'username', 'password', 'hypate.webuntis.com');
+const untis = new WebUntis('htbla_wels', 'punr', '1Antonia2', 'hypate.webuntis.com');
 
 await untis.login();
-
-const classes = await untis.getClasses(true, (await untis.getLatestSchoolyear()).id) //--> Klassen[]
-const classesMap = new Map();
-
-classes.forEach((x) => classesMap.set(x.name, x)) // ---> Map Key: Klassenname Value: Klasse
 
 const timetable = await untis.getOwnTimetableForRange(moment().startOf('week').add(1, 'days').toDate(), moment().startOf('week').add(5, 'days').toDate())
 
@@ -56,7 +51,7 @@ app.get("/timetable", async (req, res) => {
         }));
 
         res.send(JSON.stringify([...sortedMap]));
-        
+
     } catch (err) {
         console.log(err);
         res.status(500).send("Internal server error or unknown class :C");

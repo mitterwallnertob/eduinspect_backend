@@ -54,6 +54,7 @@ function sortData(data) {
         }
     }
 
+
     return sortedData;
 }
 
